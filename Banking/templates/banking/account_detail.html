@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+
+{% block title %}Account: {{ account.name }} | Banking System{% endblock %}
+
+{% block content %}
+    <h2 style="text-shadow:1px 1px 0 #444">Account Details: {{ account.name }}</h2>
+
+    <div class="w3-card w3-container w3-round-large w3-padding-16">
+        <i>Account Number</i>: {{ account.acct_no }} <br/>
+        <i>Account Holder Name</i>: {{ account.name }} <br/>
+        <i>Email</i>: {{ account.email }} <br/>
+        <i>Balance</i>: {{ account.balance }} <br/>
+    </div>
+
+    {% if transactions %}
+        <h3 style="text-shadow:1px 1px 0 #444">Recent Transactions:</h3>
+        <table class="w3-table w3-striped w3-bordered w3-card-4 w3-hoverable">
+            <tr class="w3-green">
+                <th>
+                    Sender
+                </th>
+                <th>
+                    Receiver
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Time and Date
+                </th>
+            </tr>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.sender }}</td>
+                    <td>{{ transaction.receiver }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.time }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+    <h3 style="text-shadow:1px 1px 0 #444">No Recent Transactions</h3>
+    {% endif %}
+{% endblock %}

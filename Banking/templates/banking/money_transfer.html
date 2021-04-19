@@ -1,0 +1,35 @@
+{% extends './base.html' %}
+
+{% block title %}Money Transfer | Banking System{% endblock %}
+
+{% block content %}
+    <h2 style="text-shadow:1px 1px 0 #444">Money Transfer</h2>
+
+    <div class="w3-container w3-card w3-margin-top">
+        <form method="post" action="">
+        {% csrf_token %}
+
+            {% for field in form %}
+            <div class="w3-margin">
+
+                {% for error in field.errors %}
+                <div class="w3-panel w3-pale-red w3-round-xlarge">
+                    {{ error }}
+                </div>
+                {% endfor %}
+
+                <b>{{ field.label_tag }}</b>
+                {{ field }}
+                {% if field.help_text %}
+                <span class="w3-small">
+                    {{ field.help_text }}
+                </span>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+        <input type="submit" value="Transfer Money" class="w3-button w3-green w3-margin w3-wide w3-right">
+
+        </form>
+    </div>
+{% endblock %}

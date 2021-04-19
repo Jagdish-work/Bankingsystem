@@ -1,0 +1,34 @@
+{% extends "./base.html" %}
+
+{% block title %}Transaction History | Banking System{% endblock %}
+
+{% block content %}
+    <h2 style="text-shadow:1px 1px 0 #444">Transaction History</h2>
+
+    {% if transactions %}
+        <table class="w3-table w3-striped w3-bordered w3-card-4 w3-hoverable">
+            <tr class="w3-green">
+                <th>
+                    Sender
+                </th>
+                <th>
+                    Receiver
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Time and Date
+                </th>
+            </tr>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.sender }}</td>
+                    <td>{{ transaction.receiver }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.time }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'banking/w3.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <!-- Sidebar -->
+  <div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none" id="mySidebar">
+    <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+      <a href="{% url 'index' %}" class="w3-bar-item w3-button">Accounts</a>
+      <a href="{% url 'transaction_history' %}" class="w3-bar-item w3-button">Transaction History</a>
+      <a href="{% url 'transfer_money' %}" class="w3-bar-item w3-button">Transfer Money</a>
+
+  </div>
+
+  <!-- Page Content -->
+  <div class="w3-teal">
+    <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
+    <div class="w3-container">
+      <h1 style="text-shadow:1px 1px 0 #444">Basic Banking System</h1>
+    </div>
+  </div>
+
+  <div class="w3-container" onclick="w3_close()">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="w3-panel w3-round-xlarge {% if message.tags == 'success' %}w3-pale-green{% else %}w3-pale-red{% endif %}" style="padding:10px">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </div>
+
+  <script>
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+  </script>
+  </body>
+</html>

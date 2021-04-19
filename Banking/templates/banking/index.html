@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <h2 style="text-shadow:1px 1px 0 #444">Accounts</h2>
+
+    {% if accounts %}
+        <table class="w3-table w3-striped w3-bordered w3-card-4 w3-hoverable">
+            <tr class="w3-green">
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Account Number
+                </th>
+                <th>
+                    Balance
+                </th>
+            </tr>
+            {% for account in accounts %}
+                <tr>
+                    <td>
+                        <a href="{{ account.get_absolute_url }}">{{ account.name }}</a>
+                    </td>
+                    <td>{{ account.email }}</td>
+                    <td>{{ account.acct_no }}</td>
+                    <td>{{ account.balance }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
